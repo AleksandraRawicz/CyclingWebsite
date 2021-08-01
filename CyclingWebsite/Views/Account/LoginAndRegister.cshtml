@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-box">
+    <div class="login-box">
+        @Html.Partial("_LoginView", new UserLoginDto())
+
+        <p>@ViewBag.Info </p>
+    </div>
+
+    <div class="login-box">
+        @Html.Partial("_RegisterView", new UserRegisterDto())
+
+        <p>@ViewBag.Info </p>
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "MyTours";
+}
+
+@model IEnumerable<TourDto>
+
+<h1 style="margin:20px;">My tours</h1>
+
+@*<div id="confirmation-box" style="display:none;">
+    <p>
+        Are you sure you want to delete?
+    </p>
+    <button id="confirmation-true" class="btn-success" onclick="confirmDelete(true)">YES</button>
+    <button class="btn-warning" onclick="confirmDelete(false)">NO</button>
+</div>*@
+
+<div>
+    @foreach (var tour in Model)
+    {
+        
+        <div class="article" style="border: 1px solid #c4c1b7; margin: 20px 0px 20px 0px; border:solid 2px gray; border-radius:15px">
+            <a href=@Url.Action("Delete", "Tour", new { tour.Id }) class="btn btn-dark" role="button" onclick="return confirm('Are you sure?')" style="float:right;" data-bs-toggle="button">X</a>
+            <h2>@tour.Name - @tour.Length - @tour.User.Name</h2>
+            <p>@tour.Summary</p>
+
+            <a href=@Url.Action("Get", "Tour", new { tour.Id }) class="btn btn-outline-primary" role="button" data-bs-toggle="button">read more...</a>
+            <a href=@Url.Action("EditView", "Tour", new { tour.Id }) class="btn btn-outline-secondary" role="button" data-bs-toggle="button">edit</a>
+
+        </div>
+    }
+
+</div>
+
+@*@section Scripts 
+{
+    <script>
+
+        function confirmation() {
+            document.getElementById("confirmation").style.display = "block";
+
+            if (document.getElementById("confirmation-true").click(
+                function () { return true;}))
+        }
+
+        function confirmDelete(confirmation) {
+            if (confirmation)
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+ }*@

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Tour";
+}
+
+@model TourDto
+
+<div>
+    <div class="tour-length">@Model.Length km</div>
+    <div class="tour-author">@Model.User.Name</div>
+    <div class="article">
+        <h1>@Model.Name</h1>
+        <h2>@Model.Summary</h2>
+        <p>@Model.Description</p>
+    </div>
+
+    <div id="img-bg-page" class="img-bg">
+        <div onclick="myFunction(0)" style="color:white;">X</div>
+        <div class="img-actual-box">
+            <img id="img-actual" src=""/>
+        </div>
+
+        <div class="img-prev" onclick="moveTo(-1)">&#10094;</div>
+        <div class="img-next" onclick="moveTo(1)">&#10095;</div>
+    </div>
+
+    <div class="row row-cols-auto">
+        @{ int counter = 0;}
+        @foreach (var img in @Model.Photos)
+         {
+            string photoId = "photo" + counter;
+            <div class="col" style="margin-bottom:30px;">
+                <img id=@photoId class="rounded float-start" width="200px" height="200px" src="~/photos/tour_@img.TourId/@img.Name" 
+                    style="cursor: pointer;" onclick="myFunction(@counter)" alt="@img.Description">
+            </div>
+            counter++;
+        }
+    </div>
+
+</div>
+
+@section Scripts{ 
+    <script>
+
+        var currentImg = 0;
+ 
+    
+    function myFunction(photoid) {
+        var element = document.getElementById('img-bg-page');
+        if (element.className == "img-bg-visible") {
+            element.className = "img-bg";
+        }
+        else {
+            element.className = "img-bg-visible";
+            var imgid = "photo" + photoid;
+            var imgsource = document.getElementById(imgid).src;
+            currentImg = photoid;
+            document.getElementById('img-actual').setAttribute("src", imgsource);
+            pathImg = path;
+        }
+        }
+
+        function moveTo(id) {
+            id = currentImg + id;
+            if (id < 0) { }
+            else if (id >= document.getElementsByClassName('rounded float-start').length) { }
+            else {
+                var imgsource = document.getElementById("photo" + id).src;
+                currentImg = id;
+                document.getElementById('img-actual').setAttribute("src",imgsource);
+            }
+        }
+    </script>
+}

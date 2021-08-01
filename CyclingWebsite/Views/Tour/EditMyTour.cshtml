@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "EditMyTour";
+}
+
+@model TourCreateDto
+
+<div style="margin-bottom: 20;">
+    <h1>Edit your tour</h1>
+
+    @using (Html.BeginForm("Edit", "Tour", FormMethod.Post, new { htmlAttributes = new { @class = "form-group" } }))
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Name" for="formName">Title</label>
+            <input type="text" asp-for="@Model.Name" class="form-control" id="formName" rows="3"></input>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Length" for="formLength">Length</label>
+            <input type="number" asp-for="@Model.Length" class="form-control" id="formLength" min="1" max="1000"></input>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Difficulty" for="formLength">Difficulty</label>
+            <input type="number" asp-for="@Model.Difficulty" class="form-control" id="formDifficulty" min="1" max="5"></input>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Summary" for="exampleFormControlTextarea1">Summary</label>
+            <textarea asp-for="@Model.Summary" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description" for="exampleFormControlTextarea2">Description</label>
+            <textarea asp-for="@Model.Description" class="form-control" id="exampleFormControlTextarea2" rows="10"></textarea>
+        </div>
+        <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+        <div class="form-group">
+            @Html.ValidationSummary()
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+     }
+</div>
+
+<div class="row row-cols-auto">
+    @foreach (var image in @Model.Photos)
+     {
+          <div class="col" style="margin-bottom:30px;">
+              <div style="position: relative;width:200px; height:200px;">
+                    <img class="rounded float-start" width="200px" height="200px" src="~/photos/tour_@image.TourId/@image.Name"
+                             alt="@image.Description">
+                    <a href=@Url.Action("DeletePhoto", "Tour" ,new {image.Id}) class="btn btn-dark" style="position:absolute; top:0; right:0; ">X</a>
+              </div>
+          </div>
+     }
+</div>
+
+<div>
+     @Html.Partial("_AddPhoto", new PhotoDto() { TourId = Model.Id })
+</div>

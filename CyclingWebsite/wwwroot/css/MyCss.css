@@ -1,0 +1,185 @@
+﻿.login-box
+{
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+    float: left;
+    vertical-align: central;
+    padding: 10%;
+}
+
+.container-box
+{
+    width:100%;
+    height: max-content;
+}
+
+#account-box
+{
+    width: 29%;
+    border-right: 1px solid black;
+    float: left;
+}
+
+#data-box{
+    width: 70%;
+    float:left;
+}
+
+.article {
+    text-align: left;
+    padding: 10px;
+    color: #1f2120;
+    border-top: solid gray 5px;
+}
+
+    .article > p{
+        font-size:20px;
+        line-height:1.6;
+        padding:20px 0px 20px 0px;
+    }
+
+    .article > h1 {
+        font-size: 40px;
+        line-height: 1.6;
+        font-weight: bold;
+        padding: 40px 0px 40px 0px;
+    }
+
+    .article > h2 {
+        font-size: 25px;
+        line-height: 1.6;
+        font-weight: bolder;
+        padding: 25px 0px 25px 0px;
+    }
+
+.tour-length {
+    float: right;
+    text-align: right;
+    font-size: 45px;
+    color: #343a40;
+    font-family: 'Trebuchet MS', sans-serif;
+    padding: 0px 20px 0px 20px;
+    background-color: #a4de37;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+.tour-author {
+    clear:right;
+    width:100%;
+    text-align: right;
+    font-size: 25px;
+    color: #343a40;
+    font-family: 'Trebuchet MS', sans-serif;
+    padding: 5px;
+}
+
+.tour-abstract {
+    border: 1px solid #c4c1b7;
+    padding: 10px 20px 10px 20px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 15px;
+}
+
+    .tour-abstract > h1 {
+        font-size: 25px;
+        line-height: 1.6;
+        font-weight: bold;
+        padding: 10px 0px 10px 0px;
+    }
+
+    .tour-abstract > h2 {
+        font-size: 15px;
+        line-height: 1.6;
+        font-weight: normal;
+        padding: 10px 0px 10px 0px;
+    }
+
+.tour-legend{
+    position:relative;
+    cursor:pointer;
+    overflow:visible;
+}
+
+    .tour-legend:hover .tour-level {
+        display: block;
+    }
+
+.tour-difficulty{
+    width:25px;
+    height:25px;
+    float:right;
+    background-color: yellow;
+    border-radius:50%;
+    margin:5px;
+}
+
+.tour-level {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 10px;
+    border-radius:5px;
+    background-color: #1f2120;
+    font-size: 15px;
+    color: white;
+    opacity: 0.5;
+    display: none;
+}
+
+.img-bg {
+    background: #363431;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    visibility: hidden;
+}
+
+.img-bg-visible {
+    background: #363431;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    z-index: 999;
+}
+
+.img-actual-box {
+    width: 620px;
+    min-height: 600px;
+    margin: auto;
+    opacity: 1;
+    position: relative;
+}
+
+#img-actual {
+    width: 100%;
+    height: auto;
+    opacity: 1;
+}
+
+.img-prev, .img-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.img-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}

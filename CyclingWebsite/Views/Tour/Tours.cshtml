@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Tours";
+
+}
+
+@model PageResult<TourDto>
+
+<h1>Tours</h1>
+
+@Html.Partial("_Search", new SearchFilters() { Page = 1, Size = 5 })
+
+
+<div id="partialplace">
+    @Html.Partial("_Tours");
+</div>
+
+
+
+

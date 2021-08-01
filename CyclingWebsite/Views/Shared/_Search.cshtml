@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model SearchFilters
+
+
+<div>
+    <form method="get" class="form-inline" data-ajax="true" data-ajax-method="get" asp-controller="Tour" 
+          asp-action="GetAll" data-ajax-update="#partialplace">
+        <input class="form-control mr-sm-2" type="search" asp-for="@Model.SearchPhrase" placeholder="Search" aria-label="Search">
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="@Model.Size" name="Size" id="inlineRadio1" value=5>
+            <label class="form-check-label" for="inlineRadio1">5</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="@Model.Size" name="Size" id="inlineRadio2" value=10>
+            <label class="form-check-label" for="inlineRadio2">10</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="@Model.Size" name="Size" id="inlineRadio3" value=15>
+            <label class="form-check-label" for="inlineRadio3">15</label>
+        </div>
+        <input type="hidden" asp-for="@Model.Page" value="@Model.Page">
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>

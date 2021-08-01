@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model PageResult<TourDto>
+@{ System.Drawing.Color color = System.Drawing.Color.FromArgb(255, 255, 0);
+    string[] difficulty = new string[] { "easy", "medium", "difficult", "advanced", "extreme" };}
+
+@{int counter = @Model.PageNumber;
+}
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        @if (Model.PageNumber > 1)
+        {
+            <li id="previous" class="page-item">
+                <a class="page-link" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace"
+                   data-ajax-update="#partialplace" href=@Url.Action("GetAll", "Tour", new SearchFilters()
+                                                    { Page = Model.PageNumber - 1, SearchPhrase = Model.Phrase, Size = Model.PageSize })>Previous</a>
+            </li>
+        }
+        else
+        {
+            <li id="previous" class="page-item">
+                <a class="page-link">Previous</a>
+            </li>
+        }
+
+        @while (counter <= Model.TotalPages && counter <= @Model.PageNumber + 2)
+        {
+            <li class="page-item">
+                <a class="page-link" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace"
+                   data-ajax-update="#partialplace" href=@Url.Action("GetAll", "Tour", new SearchFilters()
+                    { Page = counter, SearchPhrase = Model.Phrase, Size=Model.PageSize })>@counter</a>
+                </li>
+
+                counter++;
+            }
+
+        @if (Model.PageNumber < @Model.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace"
+                   data-ajax-update="#partialplace" href=@Url.Action("GetAll", "Tour", new SearchFilters()
+                                                    { Page = Model.PageNumber + 1, SearchPhrase = Model.Phrase, Size = Model.PageSize })>Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+<div>
+    @foreach (var tour in Model.Items)
+    {
+        <div class="tour-abstract">
+            @{System.Drawing.Color color2 = color; }
+            <div class="tour-legend">
+                @for (int i = 1; i <= tour.Difficulty; i++)
+                {
+                    <div class="tour-difficulty" style="background-color: @string.Format("#{0:X2}{1:X2}{2:X2}",
+                     color2.R,
+                     color2.G,
+                     color2.B);"></div>
+                    color2 = @System.Drawing.Color.FromArgb(255, 255 - 50 * i, 0);
+                }
+                <div class="tour-level">level: @difficulty[tour.Difficulty - 1]</div>
+            </div>
+            <h1>@tour.Name - @tour.Length km - @tour.User.Name / @tour.Date.ToShortDateString() </h1>
+            <h2>@tour.Summary</h2>
+            <p>@Html.ActionLink("read more...", "Get", "Tour", new { tour.Id }, null)</p>
+        </div>
+    }
+
+</div>
+

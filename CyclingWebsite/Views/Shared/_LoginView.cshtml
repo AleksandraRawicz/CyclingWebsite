@@ -1,0 +1,23 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model UserLoginDto 
+
+<div>
+    <h1>Log In</h1>
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { htmlAttributes = new { @class = "form-group" } }))
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Email">Email address</label>
+            <input type="email" class="form-control" asp-for="@Model.Email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Password" for="exampleInputPassword1">Password</label>
+            <input type="password" asp-for="@Model.Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+            <button type="submit" class="btn btn-primary">log in</button>     
+    }
+</div>
